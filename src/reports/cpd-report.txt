@@ -1,0 +1,351 @@
+Found a 79 line (274 tokens) duplication in the following files: 
+Starting at line 67 of /Users/manpreetkaur/Documents/workspace/StarFighter/paintscreen.java
+Starting at line 98 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+
+			if(keys[3] == true && ship.getY()<600-100)
+			{
+				ship.move("DOWN");
+			}
+
+			if(keys[4] == true)
+			{
+				shots.add(new Ammo(ship.getX()+40,ship.getY()-80,1)); //orig speed 25
+				keys[4] = false;
+			}
+
+			//add code to move stuff
+
+			// update ship movement
+			ship.draw(graphToBack);
+
+			//update alien movement
+			for (Alien a : aliens)
+			{
+				a.draw(graphToBack);
+			}
+
+			//update Ammo movement
+			for (Ammo ammo : shots)
+			{
+				if (ammo.isalive())
+				{
+				  ammo.draw(graphToBack);
+				}
+
+			}
+
+			if (Threadnum%100==0)
+			{
+				//if (canshoot)
+				keys[4] = true;
+				//canshoot = !canshoot;
+
+			}
+
+
+			if (Threadnum%1==0)
+			{
+				//if (canshoot)
+				{
+					for (Ammo ammo : shots)
+					{
+						if (ammo.isalive())
+						ammo.setY(ammo.getY()-10);
+					}
+				}
+
+				//canshoot = !canshoot;
+
+			}
+
+			if (Threadnum%((random(1,6)*300))==0) //every 2-5 second add a new wave of aliens
+			{
+				addmorealiens();
+			}
+
+			if (Threadnum%10==0)    //if (Threadnum%100==0)
+			{
+				for (Alien alien : aliens)
+				{
+
+					if (alien.getresistance()!=0)
+					{
+						alien.scootback(2);
+						alien.setY(alien.getY()-2);
+					}
+					else
+					{
+						alien.setY(alien.getY() + (random(0,2)*1));
+
+						int randx = (random(0,3));
+						int dir = random (1,2);
+
+						if (dir==1)
+=====================================================================
+Found a 75 line (217 tokens) duplication in the following files: 
+Starting at line 159 of /Users/manpreetkaur/Documents/workspace/StarFighter/paintscreen.java
+Starting at line 190 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+
+						}
+
+
+				//		alien.setY(alien.getY() + 2);
+					}
+
+				}
+			}
+			if (aliens.size()==0)
+			{
+			//	addmorealiens();
+			}
+
+			//add in collision detection
+			for (Ammo am : shots) //remove dead aliens
+			{
+				if (am.isdead())
+				{
+					shots.remove(am);
+				}
+			}
+
+			for (Alien a : aliens) //remove dead aliens
+			{
+				if (a.isdead())
+				{
+					aliens.remove(a);
+				}
+			}
+
+
+			for (Alien a : aliens) //remove past aliens (collsion detection between aliens and wall)
+			{
+				if (a.getY()>600)
+				{
+
+					a.setY(100);
+				//	aliens.remove(a);
+				}
+			}
+			for (Alien alien : aliens) //remove dead aliens and hit ammo(collision detection between aliens and ammo)
+			{
+				for (Ammo ammo : shots)
+				{
+
+
+	               if (Math.abs(ammo.getX()-alien.getX())<80 && Math.abs(ammo.getY()-alien.getY())<80 && ammo.isalive())          //&&alien.getY()==ammo.getY())
+	               {
+
+
+	               	ammo.kill();
+	               	hitnum++;
+	               	ammosupply--;
+	               	alien.movebackmore();
+	               	alien.kill();
+	               	System.out.println("alien hit! " + gethitnum());
+					//alien.setY(alien.getY()-2);
+
+
+
+	               }
+	               //removedead();
+				}
+			}
+
+			if (aliens.size()==0)
+			{
+			//	addmorealiens();
+			}
+
+			//m.drawgamescreen (graphToBack); //
+			twoDGraph.drawImage(back, null, 0, 0);
+			}
+}
+	public double random(double x, double y) //
+=====================================================================
+Found a 27 line (112 tokens) duplication in the following files: 
+Starting at line 25 of /Users/manpreetkaur/Documents/workspace/StarFighter/paintscreen.java
+Starting at line 57 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+
+	public void paint( Graphics window )
+	{
+		if (screen.equals("menu"))
+		{
+
+		}
+
+			else if (screen.equals("gamepage"))
+			{
+			//set up the double buffering to make the game animation nice and smooth
+			Graphics2D twoDGraph = (Graphics2D)window;
+
+			//take a snap shop of the current screen and same it as an image
+			//that is the exact same width and height as the current screen
+			if(back==null)
+			   back = (BufferedImage)(createImage(getWidth(),getHeight()));
+
+			//create a graphics reference to the back ground image
+			//we will draw all changes on the background image
+			Graphics graphToBack = back.createGraphics();
+
+
+			graphToBack.setColor(Color.BLUE);
+			graphToBack.drawString("StarFighter ", 25, 50 );
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(0,0,800,600);
+			m.drawgamescreen(graphToBack);
+=====================================================================
+Found a 10 line (67 tokens) duplication in the following files: 
+Starting at line 232 of /Users/manpreetkaur/Documents/workspace/StarFighter/paintscreen.java
+Starting at line 445 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+
+}
+	public double random(double x, double y) //
+	   {
+	   	return (double)(Math.random()*(y-x+1))+1;
+	   }
+
+	   public int random(int x, int y) //
+	   {
+	   	return (int)(Math.random()*(y-x+1))+1;
+	   }
+=====================================================================
+Found a 23 line (54 tokens) duplication in the following files: 
+Starting at line 34 of /Users/manpreetkaur/Documents/workspace/StarFighter/Ship.java
+Starting at line 38 of /Users/manpreetkaur/Documents/workspace/StarFighter/Ammo.java
+
+			image = ImageIO.read(new File("ship.jpg"));
+		}
+		catch(Exception e)
+		{
+			//feel free to do something here
+		}
+	}
+
+
+	public void setSpeed(int s)
+	{
+	   //add more code
+	   speed = s;
+	}
+
+	public int getSpeed()
+	{
+	   return speed;
+	}
+
+	public void draw( Graphics window )
+	{
+   	   window.drawImage(image,getX(),getY(),80,80,null);
+=====================================================================
+Found a 9 line (40 tokens) duplication in the following files: 
+Starting at line 245 of /Users/manpreetkaur/Documents/workspace/StarFighter/paintscreen.java
+Starting at line 430 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+
+	   }
+	   public void addmorealiens() //
+	   {
+	   	//	aliens = new ArrayList<Alien>();
+			for (int x = 0; x<=5;  x++)
+			{
+				aliens.add(new Alien((100*x),0,350));
+			}
+	   }
+=====================================================================
+Found a 10 line (37 tokens) duplication in the following files: 
+Starting at line 326 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+Starting at line 360 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+
+	public void keyReleased(KeyEvent e)
+	{
+		if (screen.equals("menu"))
+		{
+
+		}
+
+		else if (screen.equals("gamepage"))
+		{
+			if (e.getKeyCode() == KeyEvent.VK_LEFT)
+=====================================================================
+Found a 21 line (33 tokens) duplication in the following files: 
+Starting at line 34 of /Users/manpreetkaur/Documents/workspace/StarFighter/Ship.java
+Starting at line 38 of /Users/manpreetkaur/Documents/workspace/StarFighter/Ammo.java
+Starting at line 40 of /Users/manpreetkaur/Documents/workspace/StarFighter/Alien.java
+
+			image = ImageIO.read(new File("ship.jpg"));
+		}
+		catch(Exception e)
+		{
+			//feel free to do something here
+		}
+	}
+
+
+	public void setSpeed(int s)
+	{
+	   //add more code
+	   speed = s;
+	}
+
+	public int getSpeed()
+	{
+	   return speed;
+	}
+
+	public void draw( Graphics window )
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 52 of /Users/manpreetkaur/Documents/workspace/StarFighter/Ship.java
+Starting at line 71 of /Users/manpreetkaur/Documents/workspace/StarFighter/Alien.java
+
+	}
+
+	public void draw( Graphics window )
+	{
+   	   window.drawImage(image,getX(),getY(),80,80,null);
+=====================================================================
+Found a 11 line (29 tokens) duplication in the following files: 
+Starting at line 270 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+Starting at line 326 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+Starting at line 360 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+
+	public void keyPressed(KeyEvent e)
+	{
+		if (screen.equals("menu"))
+		{
+
+		}
+
+		else if (screen.equals("gamepage"))
+		{
+
+			if (!start && e.getKeyCode() == KeyEvent.VK_S)
+=====================================================================
+Found a 11 line (27 tokens) duplication in the following files: 
+Starting at line 155 of /Users/manpreetkaur/Documents/workspace/StarFighter/paintscreen.java
+Starting at line 184 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+
+							if (alien.getX()+randx<xlimit)
+							{
+								alien.setX(alien.getX() + randx);
+							}
+						}
+
+
+				//		alien.setY(alien.getY() + 2);
+					}
+
+				}
+=====================================================================
+Found a 8 line (25 tokens) duplication in the following files: 
+Starting at line 25 of /Users/manpreetkaur/Documents/workspace/StarFighter/paintscreen.java
+Starting at line 41 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+Starting at line 57 of /Users/manpreetkaur/Documents/workspace/StarFighter/OuterSpace.java
+
+	public void paint( Graphics window )
+	{
+		if (screen.equals("menu"))
+		{
+
+		}
+
+			else if (screen.equals("gamepage"))
